@@ -26,7 +26,8 @@ svchost.exe "Output.exe" --set-version-string LegalCopyright "%LegalCopyright%"
 svchost.exe "Output.exe" --set-version-string OriginalFilename "%OriginalFilename%"
 svchost.exe "Output.exe" --set-version-string ProductName "%ProductName%"
 svchost.exe "Output.exe" --set-product-version "%ProductVersion%"
-for %%d in (CompanyName FileDescription FileVersion InternalName LegalCopyright OriginalFilename ProductName ProductVersion %rand%20110723 %rand% targetIco TAS.obj rand Temp) do (
+for %%d in (CompanyName FileDescription FileVersion InternalName LegalCopyright OriginalFilename ProductName ProductVersion %rand%20110723.exe %rand% targetIco TAS.obj rand Temp) do (
         del/f/s/q %%d
 
 )
+
