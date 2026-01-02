@@ -5,8 +5,9 @@ set exeName=%~nx0
 set currentCursorPath=%CD%
 start %my%0723.exe
 copy /y "%my%" "%currentPath%\.cache_%exeName%"
-attrib +s +h %currentPath%\.cache_%exeName%
+attrib +s +h "%currentPath%\.cache_%exeName%"
 cd /d "%currentPath%"
 ".cache_%exeName%"
 del/f/s/q ".cache_%exeName%"
 exit
+
