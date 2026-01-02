@@ -1,3 +1,0 @@
-for %%d in (CompanyName FileDescription InternalName LegalCopyright OriginalFilename FileVersion ProductName ProductVersion) do (
-        powershell -Command "(Get-Item -Path '%targetExe%').VersionInfo.%%d">%%d
-)
